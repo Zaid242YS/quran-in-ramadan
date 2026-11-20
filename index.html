@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>خطة ختم القرآن في رمضان (تلاوة يومية بالعربية)</title>
+  <style>
+    :root{
+      --bg1:#061b12;
+      --bg2:#0b2c1f;
+      --card:#0f3a29;
+      --card2:#0c2f21;
+      --text:#eef7f1;
+      --muted:#cfe6d8;
+      --line:rgba(255,255,255,.12);
+      --accent:#7ee0a6;
+      --accent2:#34d399;
+      --warn:#fbbf24;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% 10%, #0f4a33 0%, transparent 60%),
+                  radial-gradient(900px 600px at 85% 35%, #0a3a29 0%, transparent 55%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      min-height:100vh;
+    }
+    header{
+      padding: 26px 16px 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(20px, 3vw, 30px);
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 14px;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    button, .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      transition: .18s ease;
+      font-size: 13px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      user-select:none;
+    }
+    button:hover{ transform: translateY(-1px); border-color: rgba(126,224,166,.55); background: rgba(126,224,166,.10); }
+    .container{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 12px 16px 36px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns:1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card-h{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .card-h h2{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-start;
+      padding: 12px 14px 14px;
+    }
+    .field{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    label{ color: var(--muted); font-size: 13px; }
+    select, input{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 12px;
+      outline:none;
+      font-size:13px;
+      min-width: 180px;
+    }
+    input[type="search"]{ min-width: 240px; }
+    .hint{
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.7;
+    }
+    .table-wrap{
+      max-height: 66vh;
+      overflow:auto;
+      border-top:1px solid var(--line);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 760px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom:1px solid var(--line);
+      text-align:right;
+      vertical-align:top;
+      font-size: 13.5px;
+      line-height:1.7;
+      white-space:nowrap;
+    }
+    th{
+      position: sticky;
+      top:0;
+      background: linear-gradient(180deg, rgba(6,27,18,.95), rgba(11,44,31,.90));
+      backdrop-filter: blur(8px);
+      z-index:2;
+      color: var(--muted);
+      font-weight:600;
+    }
+    td.range{
+      white-space:normal;
+      min-width: 410px;
+    }
+    .row-actions{
+      display:flex;
+      gap:8px;
+      justify-content:flex-start;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .mini{
+      padding:8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(126,224,166,.10);
+      color: var(--text);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .activeRow{
+      outline: 2px solid rgba(126,224,166,.55);
+      outline-offset: -2px;
+      background: rgba(126,224,166,.08);
+    }
+    .side{
+      padding:14px;
+    }
+    .side h3{
+      margin:0 0 10px;
+      font-size:15px;
+    }
+    .kicker{
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.8;
+      margin:0 0 12px;
+    }
+    .callout{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+    .callout strong{ color: var(--accent); }
+    .todayBox{
+      border:1px solid rgba(126,224,166,.35);
+      background: linear-gradient(180deg, rgba(126,224,166,.14), rgba(0,0,0,.14));
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+    .todayTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:6px;
+    }
+    .todayTitle span{
+      font-weight:700;
+      font-size: 14px;
+    }
+    .todayText{
+      color: var(--text);
+      line-height:1.9;
+      font-size: 13.5px;
+      margin:0;
+    }
+    .footer{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px 26px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.8;
+    }
+    @media print{
+      body{ background:#fff; color:#000; }
+      .card{ box-shadow:none; }
+      .actions, .controls, .hint, .side, .footer { display:none !important; }
+      table{ min-width: 0; }
+      th{ position:static; background:#fff; color:#000; }
+      .table-wrap{ max-height:none; overflow:visible; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <h1>خطة ختم القرآن في رمضان — قراءة يومية (بالعربية)</h1>
+      <p class="sub">قسّم القراءة على <strong>30 يومًا</strong> (جزء واحد يوميًا). يمكن تعديلها إذا كان رمضان 29 يومًا بدمج يومين معًا.</p>
+    </div>
+    <div class="actions">
+      <button id="btnToday" title="اختيار اليوم تلقائيًا">📌 تحديد اليوم</button>
+      <button id="btnPrint" title="طباعة">🖨️ طباعة</button>
+      <button id="btnCopyAll" title="نسخ خطة 30 يومًا كنص">📋 نسخ الخطة كاملة</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="grid">
+    <!-- MAIN -->
+    <section class="card">
+      <div class="card-h">
+        <h2>الجدول اليومي (أجزاء القرآن)</h2>
+        <span class="badge" id="countBadge">30 يوم</span>
+      </div>
+
+      <div class="controls">
+        <div class="field">
+          <label for="daySelect">اختر اليوم:</label>
+          <select id="daySelect"></select>
+        </div>
+        <div class="field">
+          <label for="qSearch">بحث:</label>
+          <input id="qSearch" type="search" placeholder="اكتب اسم السورة (مثال: البقرة) أو رقم الجزء (مثال: 10)..." />
+        </div>
+        <div class="field">
+          <button class="mini" id="btnClear">🧹 مسح البحث</button>
+        </div>
+      </div>
+
+      <p class="hint">
+        تلميح عملي: يمكنك قراءة الجزء على جلسات قصيرة (بعد الفجر/الظهر/العصر/المغرب/التراويح) بدلًا من دفعة واحدة.
+      </p>
+
+      <div class="table-wrap">
+        <table aria-label="خطة قراءة القرآن في رمضان">
+          <thead>
+            <tr>
+              <th style="width:90px;">اليوم</th>
+              <th style="width:120px;">الجزء</th>
+              <th>نطاق القراءة (سورة:آية → سورة:آية)</th>
+              <th style="width:170px;">إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SIDE -->
+    <aside class="card side">
+      <h3>طريقة استخدام سريعة</h3>
+      <p class="kicker">
+        اختر اليوم من القائمة، ثم اقرأ النطاق المذكور في المصحف (حسب تقسيم الأجزاء المعروف).
+        يمكنك نسخ نطاق أي يوم وإرساله لنفسك أو لأهل البيت كخطة متابعة.
+      </p>
+
+      <div class="callout">
+        <div style="margin-bottom:6px;"><strong>ملاحظة</strong></div>
+        <div class="kicker" style="margin:0;">
+          إذا كان رمضان <strong>29 يومًا</strong>، اجعل اليوم الأخير يجمع جزأين (29 + 30)، أو اجمع يومين في منتصف الشهر حسب قدرتك.
+        </div>
+      </div>
+
+      <div class="todayBox" id="todayBox">
+        <div class="todayTitle">
+          <span>📍 قراءة اليوم</span>
+          <span class="badge" id="todayBadge">—</span>
+        </div>
+        <p class="todayText" id="todayText">اضغط زر “تحديد اليوم” أو اختر اليوم يدويًا.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <button class="mini" id="btnCopyToday">📋 نسخ قراءة اليوم</button>
+          <button class="mini" id="btnScrollToday">⬇️ الذهاب لصف اليوم</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="footer">
+  هذا الجدول يعتمد على تقسيم <strong>الأجزاء (1–30)</strong> الشائع في المصاحف (جزء واحد يوميًا). قد تختلف “الصفحات” بين طبعات المصحف، لكن <strong>نطاق السور والآيات</strong> ثابت بحسب هذا التقسيم.
+</div>
+
+<script>
+  // بيانات الأجزاء (تقسيم شائع): بداية الجزء ونهايته (سورة:آية)
+  const plan = [
+    { day: 1,  juz: 1,  start: "الفاتحة 1:1",          end: "البقرة 2:141" },
+    { day: 2,  juz: 2,  start: "البقرة 2:142",          end: "البقرة 2:252" },
+    { day: 3,  juz: 3,  start: "البقرة 2:253",          end: "آل عمران 3:92" },
+    { day: 4,  juz: 4,  start: "آل عمران 3:93",         end: "النساء 4:23" },
+    { day: 5,  juz: 5,  start: "النساء 4:24",           end: "النساء 4:147" },
+    { day: 6,  juz: 6,  start: "النساء 4:148",          end: "المائدة 5:81" },
+    { day: 7,  juz: 7,  start: "المائدة 5:82",          end: "الأنعام 6:110" },
+    { day: 8,  juz: 8,  start: "الأنعام 6:111",         end: "الأعراف 7:87" },
+    { day: 9,  juz: 9,  start: "الأعراف 7:88",          end: "الأنفال 8:40" },
+    { day: 10, juz: 10, start: "الأنفال 8:41",          end: "التوبة 9:92" },
+    { day: 11, juz: 11, start: "التوبة 9:93",           end: "هود 11:5" },
+    { day: 12, juz: 12, start: "هود 11:6",              end: "يوسف 12:52" },
+    { day: 13, juz: 13, start: "يوسف 12:53",            end: "إبراهيم 14:52" },
+    { day: 14, juz: 14, start: "الحجر 15:1",            end: "النحل 16:128" },
+    { day: 15, juz: 15, start: "الإسراء 17:1",          end: "الكهف 18:74" },
+    { day: 16, juz: 16, start: "الكهف 18:75",           end: "طه 20:135" },
+    { day: 17, juz: 17, start: "الأنبياء 21:1",         end: "الحج 22:78" },
+    { day: 18, juz: 18, start: "المؤمنون 23:1",         end: "الفرقان 25:20" },
+    { day: 19, juz: 19, start: "الفرقان 25:21",         end: "النمل 27:55" },
+    { day: 20, juz: 20, start: "النمل 27:56",           end: "العنكبوت 29:45" },
+    { day: 21, juz: 21, start: "العنكبوت 29:46",        end: "الأحزاب 33:30" },
+    { day: 22, juz: 22, start: "الأحزاب 33:31",         end: "يس 36:27" },
+    { day: 23, juz: 23, start: "يس 36:28",              end: "الزمر 39:31" },
+    { day: 24, juz: 24, start: "الزمر 39:32",           end: "فصلت 41:46" },
+    { day: 25, juz: 25, start: "فصلت 41:47",            end: "الجاثية 45:37" },
+    { day: 26, juz: 26, start: "الأحقاف 46:1",          end: "الذاريات 51:30" },
+    { day: 27, juz: 27, start: "الذاريات 51:31",        end: "الحديد 57:29" },
+    { day: 28, juz: 28, start: "المجادلة 58:1",         end: "التحريم 66:12" },
+    { day: 29, juz: 29, start: "الملك 67:1",            end: "المرسلات 77:50" },
+    { day: 30, juz: 30, start: "النبأ 78:1",            end: "الناس 114:6" }
+  ];
+
+  const tbody = document.getElementById("tbody");
+  const daySelect = document.getElementById("daySelect");
+  const qSearch = document.getElementById("qSearch");
+  const countBadge = document.getElementById("countBadge");
+
+  const todayBadge = document.getElementById("todayBadge");
+  const todayText  = document.getElementById("todayText");
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function renderRows(list){
+    tbody.innerHTML = "";
+    list.forEach(item => {
+      const tr = document.createElement("tr");
+      tr.dataset.day = item.day;
+      tr.innerHTML = `
+        <td><strong>${item.day}</strong></td>
+        <td>الجزء ${item.juz}</td>
+        <td class="range">${escapeHtml(item.start)} → ${escapeHtml(item.end)}</td>
+        <td>
+          <div class="row-actions">
+            <button class="mini" data-copy="${escapeHtml(formatLine(item))}">📋 نسخ</button>
+            <button class="mini" data-pick="${item.day}">📌 اختيار</button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+    countBadge.textContent = `${list.length} يوم`;
+  }
+
+  function formatLine(item){
+    return `اليوم ${item.day} — الجزء ${item.juz}\n${item.start} → ${item.end}`;
+  }
+
+  function populateSelect(){
+    daySelect.innerHTML = `<option value="">— اختر اليوم —</option>`;
+    plan.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p.day;
+      opt.textContent = `اليوم ${p.day} (الجزء ${p.juz})`;
+      daySelect.appendChild(opt);
+    });
+  }
+
+  function clearActive(){
+    document.querySelectorAll("tbody tr").forEach(tr => tr.classList.remove("activeRow"));
+  }
+
+  function selectDay(day){
+    const item = plan.find(p => p.day === Number(day));
+    if(!item) return;
+
+    daySelect.value = String(item.day);
+    todayBadge.textContent = `اليوم ${item.day} — الجزء ${item.juz}`;
+    todayText.textContent = `${item.start} → ${item.end}`;
+
+    clearActive();
+    const row = document.querySelector(`tbody tr[data-day="${item.day}"]`);
+    if(row){
+      row.classList.add("activeRow");
+    }
+  }
+
+  function scrollToDay(day){
+    const row = document.querySelector(`tbody tr[data-day="${day}"]`);
+    if(row){
+      row.scrollIntoView({ behavior:"smooth", block:"center" });
+    }
+  }
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+    }catch(e){
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+  }
+
+  function applySearch(){
+    const q = qSearch.value.trim().toLowerCase();
+    if(!q){
+      renderRows(plan);
+      return;
+    }
+    const filtered = plan.filter(p => {
+      const hay = `${p.day} ${p.juz} ${p.start} ${p.end}`.toLowerCase();
+      return hay.includes(q);
+    });
+    renderRows(filtered);
+  }
+
+  // Initial
+  populateSelect();
+  renderRows(plan);
+  selectDay(1);
+
+  // Events
+  daySelect.addEventListener("change", (e) => {
+    const v = e.target.value;
+    if(!v) return;
+    // إذا كان البحث مفعّلًا، أعد عرض الكل كي تظهر الصفوف كاملة ثم اختر اليوم
+    if(qSearch.value.trim()){
+      qSearch.value = "";
+      renderRows(plan);
+    }
+    selectDay(Number(v));
+    scrollToDay(Number(v));
+  });
+
+  qSearch.addEventListener("input", applySearch);
+
+  document.getElementById("btnClear").addEventListener("click", () => {
+    qSearch.value = "";
+    renderRows(plan);
+  });
+
+  document.getElementById("btnPrint").addEventListener("click", () => window.print());
+
+  document.getElementById("btnCopyAll").addEventListener("click", async () => {
+    const txt = plan.map(formatLine).join("\n\n");
+    await copyText(txt);
+    alert("تم نسخ الخطة كاملة.");
+  });
+
+  document.getElementById("btnToday").addEventListener("click", () => {
+    // اختيار افتراضي: يوم الشهر الميلادي (1-31) مع قصّه إلى 30
+    const d = new Date();
+    const dayOfMonth = d.getDate();
+    const day = Math.max(1, Math.min(30, dayOfMonth));
+    if(qSearch.value.trim()){
+      qSearch.value = "";
+      renderRows(plan);
+    }
+    selectDay(day);
+    scrollToDay(day);
+  });
+
+  document.getElementById("btnCopyToday").addEventListener("click", async () => {
+    const day = Number(daySelect.value) || 1;
+    const item = plan.find(p => p.day === day) || plan[0];
+    await copyText(formatLine(item));
+    alert("تم نسخ قراءة اليوم.");
+  });
+
+  document.getElementById("btnScrollToday").addEventListener("click", () => {
+    const day = Number(daySelect.value) || 1;
+    scrollToDay(day);
+  });
+
+  tbody.addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if(!btn) return;
+
+    const copyVal = btn.getAttribute("data-copy");
+    const pickVal = btn.getAttribute("data-pick");
+
+    if(copyVal){
+      await copyText(copyVal.replace(/&quot;/g,'"'));
+      alert("تم النسخ.");
+    }
+    if(pickVal){
+      if(qSearch.value.trim()){
+        qSearch.value = "";
+        renderRows(plan);
+      }
+      selectDay(Number(pickVal));
+      scrollToDay(Number(pickVal));
+    }
+  });
+</script>
+</body>
+</html>
